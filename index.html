@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鏡花水月 - Mirror, flower, water and moon</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+    <link href="./style.css" rel="stylesheet" type="text/css" media="all">
+    <link rel="icon" href="./peaches.ico" type="image/x-icon">
+
+  </head>
+  <body>
+    <div class="page">
+      <div class="decors">
+        <img src="./assets/index/banana-leaves0.png" id="leaves">
+        <img src="./assets/index/vase1.png" id="r-vase">
+        <img src="./assets/index/fishtank0.png" id="tank">
+        <img src="./assets/index/vase0.png" id="l-vase">
+        <img src="./assets/index/fungus0.png" id="fungus">
+      </div>
+
+      <a href="mailto: thulium69@outlook.com" id="email">
+        <img src="./assets/index/email.webp">
+      </a>
+
+      <main class="layout">
+
+        <div class="side side-left">
+          <div class="figure-card">
+            <img src="./assets/figure/figure-1.webp" alt="Figure 1"/>
+          </div>
+        </div>
+
+        <div class="center">
+          <img src="./assets/index/title.webp" alt="title" id="title">
+          <div class="redirect">
+            <div id="intro-left">
+              <p class="hallucinate">
+                 Hey! You’re welcome to use any listed pictures in your own projects
+                <em>commercial use is okay</em>, as long as the main part isn’t just my drawings.
+                <br>
+                <a href="./archive.html">
+                  <img src="./assets/index/enter.webp" alt="Enter Archive" id="enter"/>
+                </a>
+
+              </p>
+            </div>
+            <div id="intro-right">
+              <p class="hallucinate">
+                If you like my drawings, you might enjoy visiting my main site too:
+                <br>
+                <a href="https://voidhead.net" target="_blank" style="align-self:center;">
+                  <img src="./assets/index/mainsite.GIF" alt="Go to main site" style="max-width: 88px; height: auto;"/>
+                </a>
+                <br>
+                  If you likey please feel free to add this link banner to your site, I would be much appreciated.
+            </p>
+              <img src="./assets/index/pratibimba.GIF" alt="banner" style="max-width: 180px; height: auto;"/>
+              <div class="code-wrapper">
+                <button class="copy-btn">Copy</button>
+                <pre class="code-block" id="code-to-copy">
+                    &lt;a href="https://voidhead.net/" target="_blank" rel="voidhead"&gt;
+                    &lt;img src="https://voidhead.net/assets/main/mainsite.GIF" alt="voidhead.net" style="height:31px;" /&gt;
+                    &lt;/a&gt;
+                </pre>
+              </div>
+
+            </div>
+
+          </div>
+          
+          <img src="./assets/index/lotus.webp" alt="seat" id="seat">
+        </div>
+
+        <div class="side side-right">
+          <div class="figure-card">
+            <img src="./assets/figure/figure-2.webp" alt="Figure 2"/>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <span>© <span id="y"></span> pratibimba · Free materials</span>
+      </footer>
+    </div>
+
+    
+  </body>
+  <script>
+      document
+        .getElementById("y")
+        .textContent = new Date().getFullYear();
+
+      function updateScale() {
+        const baseWidth = 450;
+        const actualWidth = window.innerWidth;
+        const scale = Math.min(1, actualWidth / baseWidth);
+        document
+          .documentElement
+          .style
+          .setProperty('--scale', scale);
+      }
+      window.addEventListener('resize', updateScale);
+      updateScale();
+
+  document.querySelectorAll(".copy-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const pre = btn.nextElementSibling;
+      const text = pre.innerText;
+
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "Copied!";
+        setTimeout(() => (btn.textContent = "Copy"), 1500);
+      }).catch(() => {
+        btn.textContent = "❌ Failed";
+      });
+    });
+  });
+
+    </script>
+</html>

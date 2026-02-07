@@ -1,0 +1,343 @@
+/* ====== 基础 ====== */
+:root{
+  --ink: #BEC2BC;
+  --muted: #555;
+  --line: rgba(0,0,0,.18);
+
+  --panel: rgba(255,255,255,.82);
+  --shadow: 0 14px 40px rgba(0,0,0,.12);
+
+  --radius: 18px;
+  --radius-lg: 26px;
+
+  --maxw: 1100px;
+}
+/* 基本没用 */
+
+@media screen and (max-width: 768px) {
+  body{
+    overflow: scroll !important;
+    overflow-x: hidden !important;
+    background-size: cover !important;
+  }
+  .decors{
+    display: none;
+  }
+  .side, .side-left, .side-right, .figure-card img{
+    display: none !important;
+  }
+  .redirect {
+    flex-direction: column;
+  }
+
+  .redirect img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+  }
+
+  #email{
+    position: absolute;
+    top: 7%;
+    left: 5%;
+    width: 22% !important;
+    display: block;
+    z-index: 10;
+  }
+
+  #email img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+*{ box-sizing: border-box;}
+html,body{ height:100%; margin:0; padding:0;}
+body{
+  background-image: url("./D7111A1D247A64A799EAA44016D7FC6D.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  color: var(--ink);
+  font-family:  Georgia, serif;
+
+  overflow: hidden;
+
+  cursor:
+  url("./assets/aerored/aero_arrow.cur"), auto;
+
+}
+a{
+  cursor:
+  url("./assets/aerored/aero_link.cur"), pointer;
+}
+
+
+.page{
+  min-height: 100vh;
+  position: relative;
+
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== 布局主体：三列（左figure中右figure） ====== */
+.layout{
+  flex:1;
+  position: relative;
+  z-index: 2; 
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0;
+
+  align-items: start;
+
+  display: flex;
+  justify-content: left;
+  align-content: space-between;
+  max-width: var(--maxw);
+  height: calc(100vh - 40px);
+  flex-shrink: 0;
+}
+
+body, .layout, .page {
+  user-select: text;
+  pointer-events: auto;
+}
+
+
+/* ====== 两侧figure  ====== */
+.side{ 
+  width: 120px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.figure-card{
+  position: sticky;
+
+  display: block;
+  text-decoration: none;
+  min-height: 520px;
+}
+
+.figure-card img{
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.02);
+
+}
+
+.side {
+  height: 100%;
+}
+
+.side-left img{
+  position:absolute;
+  top: 10%;
+  left: 30%;
+}
+
+.side-right img{
+  position:absolute;
+  top: 15%;
+  right: 25%;
+  z-index: 5;
+}
+
+/* ====== 中间内容 ====== */
+.center{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 7rem;
+
+}
+
+#title{
+  height: 85%;
+  margin: 0 auto;
+  
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  transform: scale(var(--scale));
+}
+
+.redirect{
+  display: flex;
+}
+
+.redirect p {
+  max-width: 620px;
+  width: 100%;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: left;
+  padding: 0.25rem;
+}
+
+.redirect p > a > img {
+  display: block;
+  margin: 0 auto;
+}
+
+
+#enter{
+  max-width: 220px;
+  transition: transform .12s ease, filter .12s ease;
+}
+
+#enter:hover{
+  transform: translateY(-2px);
+  filter:hue-rotate(210deg) saturate(200%) brightness(70%);
+}
+
+pre.code-block {
+  background: #000000;
+  border: 1px solid #445c53;
+  padding: 8px 12px;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  color: #e2fff5;
+  overflow-x: auto;
+  max-width: 100%;
+  line-height: 1.4;
+  white-space: pre-wrap;  
+  word-break: break-word; 
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+  margin: 10px 0;
+
+  text-align: left;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.code-wrapper {
+  position: relative;
+  max-width: 100%;
+}
+
+.copy-btn {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  font-size: 12px;
+  background: #333;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-family: monospace;
+  z-index: 2;
+  cursor:url("./assets/aerored/aero_link.cur"), pointer;
+}
+
+.copy-btn:hover {
+  background: #555;
+}
+
+
+#seat{
+  position: absolute;
+  width: 50%;
+  height:25%;
+  z-index: -1;
+  bottom:5%;
+}
+
+/* ====== Footer ====== */
+.footer{
+  height: 10px;
+  position: absolute;
+  left: 0;
+  right:0;
+  bottom:5%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+  color: (--ink);
+  font-size: 13px;
+}
+
+/* ===== 小装饰 ===== */
+.decors img{
+  position:absolute;
+  z-index: 2;
+  width: 20%;
+  pointer-events: none;
+}
+
+#leaves{
+
+  right:0;
+  top:5%;
+}
+
+#r-vase{
+  width: 15%;
+  right: -2%;
+  bottom: 27%;
+}
+
+#tank{
+  right:5%;
+  bottom:15%;
+  z-index:2;
+}
+
+#l-vase{
+  left:7%;
+  bottom: 20%;
+}
+
+#fungus{
+  width:15%;
+  bottom: 15%;
+  left:0;
+  z-index: 5;
+}
+
+#email{
+  position: absolute;
+  top: 7%;
+  left: 5%;
+  width: 13%;
+  display: block;
+  z-index: 10;
+}
+
+#email img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#email{
+  transition: transform .12s ease, filter .12s ease;
+}
+
+#email:hover{
+  transform: translateY(-2px);
+}
+
+/* ===== text effect ===== */
+.hallucinate {
+  color: #eee;
+  position: relative;
+  text-shadow:
+    0 0 1px #ff0051,
+    0.5px 0.5px 0 #1bf9ff,
+    -1px -1px 0 #b7ff39,
+    0 0 10px rgba(0,255,150,.4);
+  mix-blend-mode: lighten;
+  filter: contrast(1.2) saturate(1.4);
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Archive~鏡花水月 - Mirror, flower, water and moon</title>
+        <link href="./archive.css" rel="stylesheet" type="text/css" media="all">
+        <link rel="icon" href="./peaches.ico" type="image/x-icon">
+
+    </head>
+    <body>
+        <div class="archive-layout">
+            <!-- 左侧固定菜单 -->
+            <button id="sidebar-toggle" class="sidebar-toggle-btn">☰ Menu</button>
+            <aside class="sidebar">
+                <img src="./assets/archive/navi.webp" alt="navi" id="navi">
+                <nav>
+                    <button onclick="switchContent('home')" style="font-size:1.25rem;">Home</button>
+                    <p>Natural</p>
+                    <button onclick="switchContent('res1')">Plants</button>
+                    <button onclick="switchContent('res2')">Stones</button>
+                    <button onclick="switchContent('res3')">Fungus</button>
+                    <button onclick="switchContent('obj')">Objects</button>
+                </nav>
+                <!-- <img src="./assets/figure/safe.png" alt="under construction" id="safe"> -->
+            </aside>
+
+            <!-- 中间内容 -->
+            <main class="content">
+                <!-- 默认介绍页 -->
+                <section id="home-section" class="section-block">
+                    <img src="./assets/archive/welcome.webp" alt="welcome">
+                    <p class="hallucinate">
+                        It seems unlikely that anyone will be interested in using these pictures, but... These graphics are loosely inspired by the awkward, uncanny feeling of early amateur digital art.
+                          &nbsp;Right now, most materials are adaptations of historical paintings (sources credited).
+                          &nbsp;I’m hoping to add more stuffs in the future!
+                          <br>
+                          Sorry my lines are messy.&nbsp;
+                            Sorry perspective is wrong.<br>
+                            I’m trying &nbsp;( ×ω× )
+                    </p>
+                    <a href="./index.html" id="back">
+                        <img src="./assets/archive/back.webp">
+                    </a>
+                </section>
+
+                <!-- 图片资源页 -->
+                <section id="res1-section" class="section-block hidden">
+                    <h1>Plants</h1>
+                    <div class="gallery" id="res1-gallery"></div>
+                </section>
+
+                <section id="res2-section" class="section-block hidden">
+                    <h1>Resource 2</h1>
+                    <div class="gallery" id="res2-gallery"></div>
+                </section>
+
+                <section id="res3-section" class="section-block hidden">
+                    <h1>Fungus</h1>
+                    <div class="gallery" id="res3-gallery"></div>
+                </section>
+
+                <section id="obj-section" class="section-block hidden">
+                    <h1>Objects</h1>
+                    <div class="gallery" id="obj-gallery"></div>
+                </section>
+
+            </main>
+
+            <!-- 右侧固定 -->
+            <aside class="info">
+                <div class="fixed-box">
+                    <p class="dim-hallucinate">
+                        Was just wondering... if you would like to visit my main site too?
+                        <br>
+                        <a href="https://voidhead.net" target="_blank" style="align-self:center;">
+                            <img src="./assets/index/mainsite.GIF" alt="Go to main site" style="max-width: 88px; height: auto;"/>
+                        </a>
+                        <br>
+                        Note that it's not hosting on neocities. (I'm really not used to code with neocities,,,
+                        <br><br>
+                        <img src="./assets/index/pratibimba.GIF" alt="banner" style="max-width: 180px; height: auto;"/>
+                        <div class="code-wrapper">
+                            <button class="copy-btn">Copy</button>
+                            <pre class="code-block" id="code-to-copy">
+                    &lt;a href="https://voidhead.net/" target="_blank" rel="voidhead"&gt;
+                    &lt;img src="https://voidhead.net/assets/main/mainsite.GIF" alt="voidhead.net" style="height:31px;" /&gt;
+                    &lt;/a&gt;
+                </pre>
+                        </div>
+                        If you likey please feel free to add this link banner to your site, I would be much appreciated.
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+
+        <footer class="footer">© pratibimba · Free materials Archive</footer>
+
+        <div id="zoom-preview" style="
+                position: fixed;
+                display: none;
+                pointer-events: none;
+                z-index: 999;
+                border: 1px solid #444;
+                background: #111;
+                padding: 4px;
+                border-radius: 6px;
+                ">
+            <img src="" alt="" style="max-width: 300px; max-height: 300px; display: block;"/>
+        </div>
+    </body>
+
+    <script>
+        const contentMap = {
+            res1: [
+                {
+                    src: "./assets/index/vase0.png",
+                    name: "vase0.png",
+                    desc: "宋人夏卉骈芳图"
+                }, {
+                    src: "./assets/index/vase1.png",
+                    name: "vase1.png",
+                    desc: "陈洪绶杂画册"
+                }, {
+                    src: "./assets/index/banana-leaves0.png",
+                    name: "banana-leaves0.png"
+                }, {
+                    src: "./assets/index/pine0.png",
+                    name: "pine0.png",
+                    desc: "董浩 韶景旉芳册图"
+                }, {
+                    src: "./assets/index/lotus.png",
+                    name: "lotus.png",
+                    desc: "观无量寿经变"
+                }
+            ],
+            res2: [
+                {
+                    src: "./assets/index/stone0.png",
+                    name: "stone0.png",
+                    desc: "明人粤绣博古屏风画"
+                }
+            ],
+            res3: [
+                {
+                    src: "./assets/index/fungus0.png",
+                    name: "fungus0.png",
+                    desc: "明人粤绣博古屏风画"
+                }
+            ],
+            obj: [
+                {
+                    src: "./assets/index/fishtank0.png",
+                    name: "fishtank0.png",
+                    desc: "断袖情缘"
+                }, {
+                    src: "./assets/index/teapot.png",
+                    name: "teapot.png",
+                    desc: "孔小瑜 文窗清供"
+                }
+            ]
+        };
+
+        function createCard(item) {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const frame = document.createElement('div');
+            frame.className = 'img-frame';
+
+            const img = document.createElement('img');
+            img.src = item.thumb || item.src;
+            img.alt = item.name || '';
+            img.loading = 'lazy';
+            frame.appendChild(img);
+
+            const name = document.createElement('div');
+            name.className = 'filename';
+            name.textContent = item.name || 'Untitled';
+
+            const desc = document.createElement('div');
+            desc.className = 'desc';
+            if (item.desc) 
+                desc.textContent = item.desc;
+            
+            card.appendChild(frame);
+            card.appendChild(name);
+            if (item.desc) 
+                card.appendChild(desc);
+            
+            enableHoverZoom(img, item.src);
+
+            return card;
+        }
+
+        function switchContent(id) {
+            // 隐藏所有section
+            document
+                .querySelectorAll('.section-block')
+                .forEach(el => el.classList.add('hidden'));
+
+            if (id === 'home') {
+                document
+                    .getElementById('home-section')
+                    .classList
+                    .remove('hidden');
+                return;
+            }
+
+            // 显示对应资源页
+            const section = document.getElementById(id + '-section');
+            section
+                .classList
+                .remove('hidden');
+
+            const gallery = document.getElementById(id + '-gallery');
+            gallery.innerHTML = '';
+
+            const resources = contentMap[id] || [];
+            if (resources.length === 0) {
+                gallery.innerHTML = '<p style="color:#888;">No images available yet.</p>';
+                return;
+            }
+
+            for (let item of resources) {
+                const card = createCard(item);
+                gallery.appendChild(card);
+            }
+
+        }
+
+        // 预览DOM
+        const zoomPreview = document.getElementById('zoom-preview');
+        const zoomImg = zoomPreview.querySelector('img');
+
+        function enableHoverZoom(imgElement, fullImgSrc) {
+            imgElement.addEventListener('mouseenter', (e) => {
+                zoomImg.src = fullImgSrc;
+                zoomPreview.style.display = 'block';
+            });
+
+            imgElement.addEventListener('mousemove', (e) => {
+                zoomPreview.style.left = (e.pageX + 20) + 'px';
+                zoomPreview.style.top = (e.pageY + 20) + 'px';
+            });
+
+            imgElement.addEventListener('mouseleave', () => {
+                zoomPreview.style.display = 'none';
+                zoomImg.src = '';
+            });
+        }
+
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar
+                .classList
+                .toggle('open');
+        });
+
+        document
+            .querySelectorAll(".copy-btn")
+            .forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const pre = btn.nextElementSibling;
+                    const text = pre.innerText;
+
+                    navigator
+                        .clipboard
+                        .writeText(text)
+                        .then(() => {
+                            btn.textContent = "Copied!";
+                            setTimeout(() => (btn.textContent = "Copy"), 1500);
+                        })
+                        .catch(() => {
+                            btn.textContent = "❌ Failed";
+                        });
+                });
+            });
+
+        window.addEventListener('load', () => switchContent('home'));
+    </script>
+
+</html>
